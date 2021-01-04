@@ -4,6 +4,12 @@ sudo pacman -S reflector --noconfirm
 
 sudo reflector --latest 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
 
+echo "Freezing time to 14-Nov-2020 as Bao is incompatible with PostgreSQL 13"
+# See https://wiki.archlinux.org/index.php/Arch_Linux_Archive#How_to_restore_all_packages_to_a_specific_date
+echo "Server=https://archive.archlinux.org/repos/2020/11/14/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+
+pacman -Syyuu --noconfirm
+
 sudo mkdir -p /media/data
 
 # get the device ID of the external (it is not consistent)
